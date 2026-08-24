@@ -2,6 +2,10 @@ package validation;
 
 import model.DemandeCredit;
 
+/**
+ * ConcreteHandler. Une seule responsabilité : juger la solvabilité du client
+ * (fichage Banque Centrale, puis taux d'endettement). Rien d'autre.
+ */
 public class ValideurSolvabilite extends ValideurDemande {
 
     @Override

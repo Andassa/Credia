@@ -1,8 +1,9 @@
 package model;
 
 /**
- * Données d'une demande de crédit. Aucune règle métier ici :
- * la validation est entièrement déléguée à la chaîne de valideurs.
+ * Objet Request du pattern Chain of Responsibility.
+ * Contient uniquement les données du dossier. Aucune règle de validation ici :
+ * ce sont les valideurs qui décident d'approuver ou de rejeter.
  */
 public class DemandeCredit {
 
@@ -29,6 +30,10 @@ public class DemandeCredit {
         this.ancienneteMois = ancienneteMois;
         this.etatApprobation = etatApprobation;
         this.motifRejet = motifRejet;
+    }
+
+    public String getNomClient() {
+        return nomClient;
     }
 
     public double getMontant() {
@@ -77,11 +82,11 @@ public class DemandeCredit {
                 + "client=" + nomClient
                 + ", montant=" + String.format("%.0f", montant) + " Ar"
                 + ", endettement=" + String.format("%.0f", tauxEndettement) + "%"
-                + ", fichéBanqueCentrale=" + estFicheBanqueCentrale
-                + ", documentsPrésents=" + documentsPresents
+                + ", ficheBanqueCentrale=" + estFicheBanqueCentrale
+                + ", documentsPresents=" + documentsPresents
                 + ", contrat=" + typeContrat
-                + ", ancienneté=" + ancienneteMois + " mois"
-                + ", état=" + etatApprobation
+                + ", anciennete=" + ancienneteMois + " mois"
+                + ", etat=" + etatApprobation
                 + ", motifRejet=" + motifRejet
                 + "]";
     }

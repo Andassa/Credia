@@ -13,11 +13,13 @@ public class Main {
         scenarioA();
         System.out.println();
         scenarioB();
+        System.out.println();
+        scenarioC();
     }
 
     /**
-     * Assemble la chaîne. Changer l'ordre (ou insérer un maillon) se fait ici,
-     * sans modifier DemandeCredit ni les classes de validation existantes.
+     * Point unique d'assemblage. Changer l'ordre ou ajouter un maillon se fait
+     * ici, sans modifier les classes de validation déjà écrites (Open/Closed).
      */
     private static ValideurDemande construireChaine() {
         ValideurDemande solvabilite = new ValideurSolvabilite();
@@ -72,5 +74,28 @@ public class Main {
         construireChaine().valider(demande);
         System.out.println("État d'approbation final : " + demande.getEtatApprobation());
         System.out.println("Motif du rejet : " + demande.getMotifRejet());
+    }
+
+    private static void scenarioC() {
+        System.out.println("=== SCENARIO C : SKIP DIRECTION ===");
+
+        // Direction requise uniquement si montant > 50 000 000 Ar.
+        // Ici 30 000 000 : le maillon s'exécute (trace console) mais ne lit pas le plafond.
+        DemandeCredit demande = new DemandeCredit(
+                "Andrianaivo Soa",
+                30_000_000,
+                22,
+                false,
+                true,
+                "CDI",
+                18,
+                "EN_ATTENTE",
+                null
+        );
+
+        System.out.println("Demande initiale : " + demande);
+        construireChaine().valider(demande);
+        System.out.println("État d'approbation final : " + demande.getEtatApprobation());
+        System.out.println("Demande après traitement : " + demande);
     }
 }

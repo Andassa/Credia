@@ -2,6 +2,11 @@ package validation;
 
 import model.DemandeCredit;
 
+/**
+ * ConcreteHandler. Une seule responsabilité : vérifier la présence des pièces.
+ * Contrôle agrégé via un booléen unique, pas pièce par pièce.
+ * Limitation assumée pour ce projet académique.
+ */
 public class ValideurDocuments extends ValideurDemande {
 
     @Override

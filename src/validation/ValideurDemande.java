@@ -3,8 +3,10 @@ package validation;
 import model.DemandeCredit;
 
 /**
- * Maillon abstrait de la chaîne : chaque valideur concret ne connaît que
- * sa propre règle. L'enchaînement et l'approbation finale sont gérés ici.
+ * Handler abstrait. Template Method : valider() fixe le chaînage une seule fois.
+ * Les sous-classes n'écrivent que verifier(). Elles ne peuvent ni appeler le
+ * suivant elles-mêmes, ni poser APPROUVEE, donc elles ne peuvent pas casser
+ * la chaîne (principe DRY, une seule responsabilité pour le chaînage).
  */
 public abstract class ValideurDemande {
 
@@ -14,11 +16,6 @@ public abstract class ValideurDemande {
         this.suivant = v;
     }
 
-    /**
-     * Template method : applique la règle locale, puis transmet ou s'arrête.
-     * Si le maillon est le dernier et que la vérification réussit, la demande
-     * est marquée APPROUVEE (aucun maillon concret ne doit le faire).
-     */
     public final boolean valider(DemandeCredit d) {
         if (!verifier(d)) {
             return false;
